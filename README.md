@@ -27,3 +27,16 @@ To get started with the project:
 
 ## Testing
 The project includes a complete testing framework implemented with PyTest. Run the tests using:
+
+## Contributing
+Contributions are welcome! Feel free to open issues or pull requests to suggest improvements or report bugs. For major changes, please open an issue first to discuss the proposed changes.
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+👤 **Visitor Counter**  
+![Visitor Count](https://profile-counter.glitch.me/your-username/repo-name/count.svg)
+
+---
