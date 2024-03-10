@@ -37,6 +37,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ---
 
 👤 **Visitor Counter**  
-![Visitor Count](https://profile-counter.glitch.me/your-username/repo-name/count.svg)
+![Visitor Count](https://profile-counter.glitch.me/Akshay-ST/RetailAnalysis/count.svg)
 
 ---
