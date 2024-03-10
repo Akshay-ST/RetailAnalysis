@@ -21,9 +21,9 @@ This project was developed using PyCharm, leveraging the power of PySpark for ef
 
 ## Getting Started
 To get started with the project:
-1. Clone this repository: `git clone https://github.com/your-username/repo-name.git`
+1. Clone this repository: `git clone https://github.com/Akshay-ST/RetailAnalysis.git`
 2. Install the required dependencies: `pip install -r requirements.txt`
-3. Run the Jupyter notebooks in the `notebooks` directory to explore the analysis and insights.
+3. Run the file application_main.py in the root directory to explore the analysis and insights.
 
 ## Testing
 The project includes a complete testing framework implemented with PyTest. Run the tests using:
