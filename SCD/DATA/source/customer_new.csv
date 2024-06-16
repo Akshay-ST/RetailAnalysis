@@ -1,0 +1,12 @@
+CustomerID,FirstName,LastName,Email,Phone,Address,City,State,ZipCode
+1,John,Doe,johndoe@gmail.com,555-1234,123 Main St,Anytown,CA,12345
+2,Jane,Smith,janesmith@email.com,555-5679,456 Oak Ave,Sometown,NY,67890
+3,Robert,Johnson,robertjohnson@email.com,555-8765,123 Elm Ln,Harborcity,FL,87654
+4,Alice,Williams,alicewilliams@email.com,555-4321,234 Cedar Dr,Yourtown,FL,89012
+5,Michael,Brown,michaelbrown@email.com,555-9876,567 Elm Blvd,Theirtown,IL,45678
+6,Emily,Miller,emilymiller@email.com,555-6543,890 Birch Rd,Newcity,WA,23456
+7,David,Jones,davidjones@email.com,555-2345,678 Maple Ave,Yourcity,GA,78901
+8,Sarah,Anderson,sarahanderson@email.com,555-5432,901 Pine St,Heretown,OH,56789
+9,Christopher,Taylor,christophertaylor@email.com,555-8765,234 Oak Ln,Thistown,PA,12345
+11,Grace,Turner,graceturner@email.com,555-1122,567 Oak St,Cityview,CA,98765
+12,Connor,Evans,connorevans@email.com,555-2233,890 Pine Ave,Townsville,TX,54321

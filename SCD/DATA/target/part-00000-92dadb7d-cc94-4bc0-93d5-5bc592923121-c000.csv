@@ -1,0 +1,11 @@
+customerid,firstname,lastname,email,phone,address,city,state,zipcode,customer_skey,effective_date,end_date,active_flag
+1,John,Doe,johndoe@email.com,555-1234,123 Main St,Anytown,CA,12345,1,2024-06-08,9999-12-31,true
+2,Jane,Smith,janesmith@email.com,555-5678,456 Oak Ave,Sometown,NY,67890,2,2024-06-08,9999-12-31,true
+3,Robert,Johnson,robertjohnson@email.com,555-8765,789 Pine Ln,Othercity,TX,34567,3,2024-06-08,9999-12-31,true
+4,Alice,Williams,alicewilliams@email.com,555-4321,234 Cedar Dr,Yourtown,FL,89012,4,2024-06-08,9999-12-31,true
+5,Michael,Brown,michaelbrown@email.com,555-9876,567 Elm Blvd,Theirtown,IL,45678,5,2024-06-08,9999-12-31,true
+6,Emily,Miller,emilymiller@email.com,555-6543,890 Birch Rd,Newcity,WA,23456,6,2024-06-08,9999-12-31,true
+7,David,Jones,davidjones@email.com,555-2345,678 Maple Ave,Yourcity,GA,78901,7,2024-06-08,9999-12-31,true
+8,Sarah,Anderson,sarahanderson@email.com,555-5432,901 Pine St,Heretown,OH,56789,8,2024-06-08,9999-12-31,true
+9,Christopher,Taylor,christophertaylor@email.com,555-8765,234 Oak Ln,Thistown,PA,12345,9,2024-06-08,9999-12-31,true
+10,Olivia,Clark,oliviaclark@email.com,555-3456,567 Cedar Ave,Thatcity,TN,67890,10,2024-06-08,9999-12-31,true
