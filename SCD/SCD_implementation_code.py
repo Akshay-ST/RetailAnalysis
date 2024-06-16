@@ -2,25 +2,21 @@ from pyspark.sql.functions import *
 from pyspark.sql.window import Window
 
 from pyspark.sql import SparkSession
-import getpass
-username = getpass.getuser()
+
 spark = SparkSession. \
     builder. \
-    config("spark.sql.warehouse.dir", f"/user/{username}/warehouse"). \
-    enableHiveSupport(). \
-    master('yarn'). \
     getOrCreate()
 
 
 DATE_FORMAT = "yyyy-MM-dd"
 future_date = "9999-12-31"
-source_url = "/user/itv005857/scd_demo/source"
-destination_url = "/user/itv005857/scd_demo/target"
+source_url = "SCD/DATA/source/customer.csv"
+destination_url = "SCD/DATA/target"
 primary_key = ["customerid"]
 slowly_changing_cols = [ "email","phone","address", "city", "state", "zipcode"]
 implementation_cols = ["effective_date","end_date","active_flag"]
 
-
+SCD/DATA/source
 customers_source_schema = "customerid long,firstname string, lastname string, email string, phone string, address string, city string, state string, zipcode long"
 
 customers_target_schema = ("""customerid long,firstname string, lastname string, email string, phone string,
