@@ -1,0 +1,204 @@
+able to explain his current project and was able to answer questions related to design in detail. 
+He has good understanding of the Medallion Architecture, Lakehouse implementation.
+
+able to answer straightforward & scenario based questions related to Azure Data Factory. 
+Had good understanding of linked services, parametarization of the pipelines, activities etc. 
+experience in implementing metadata driven data extraction, ingestion framework.
+
+
+able to answer questions related to Databricks in the areas of DF API, various functions, 
+Straight forward optimizations like partitioning, filtering erc. 
+understanding of Delta tables. He is able to explain some of the latest features of the Databricks.
+
+
+able to write SQL queries of medium complexity. 
+
+good understanding of CICD process.
+
+pyspark: Asked few programming & conceptual questions on rdd,dataframe, read, transformations, wider, narrow, actions, persist, etc, joins.
+
+SQL: projection, etc
+
+Databricks: notebooks, widgets, etc
+
+DataFactory: Scheduling, few activities, linked service, dataset, etc,
+
+
+Skill set - Pyspark, python, ADB, ADLS, SQL
+
+
+ADB:
+
+language used - Pyspark.
+
+Implemented transformations like data cleansing operations , date format handling, remove duplicates , handling null records
+
+and transformations like aggregate, joins, window functions
+
+Discussed about performance optimization techniques like select only needed columns, add filters. enable cache, ADE features join optimization (broadcast hash join)
+
+Discussed about partition columns.how to determine partition column in a table
+
+Discussed about coalesce, shuffle partitions
+
+Discussed about dutil commands he used like notebook.run, notebook.exit
+
+
+ADF:
+
+Used for orchestrating data bricks notebooks
+
+Explained how to pass params to notebooks from ADF
+
+Explained about SHIR
+
+Not aware of various authentication mechanisms available while creating linked service to connect to ADB
+
+
+DE concepts:
+
+Not aware of SCD types
+
+
+Spark:
+
+Discussed about  cores, executors, parallelism
+
+Explained how tasks are distributed
+
+
+Programming:
+
+His pyspark programming skills are good
+
+Posted scenario questions in pyspark to implement self join & pivot. He gave correct answer
+
+
+Question 1;
+
+
+joined_df = flight.join(flight2,'inner',flight1.Destination==flight2.origin and flight1.cid=flight2.cid and flight1.fid<> flight2.fid)
+
+
+joined_df.select('cid','origin',flight2.Destination)
+
+
+Question 2:
+
+
+df2=df.groupBy('RollNo').pivot('Subject').agg(F.sum('Mark')
+
+df3= df2.withColumn('TotalMark',F.col('Data Structures')+F.col('Java')+F.col('Software Engineering')+F.col('Math'))
+
+
+df3.write.parquet.mode('overwrite').save()
+
+
+Question 2: SQL
+
+He gave the approach how to solve and shared partial answer.
+
+
+Evaluation Criteria : 
+
+Communication : Communication seemed to be good.
+
+
+Current Project : Seems to have fair understanding about the Project. Articulation can be improved though. 
+SQL, Shared Drive->ADLS using ADF-> Data Cleansing using ADB-> Transform and load gold layer. 
+Aware of the Medallion Architeture, however clarity is missing.
+
+
+ADF : Candidate has the fair understanding about different types of IRs. 
+Articulation was not clear about Linked Service. 
+When asked to ingest the data from SQL server tables to ADLS, 
+candidate was able to answer using metadata driven approach. 
+Candidate was able to answer the query regarding the incremental ingestion from a table using watermarking approach.
+
+
+Spark : Was able to explain the spark architecture, DAG, the cluster manger role, transformation and actions and Lazy evaluation. 
+Was able to answer the question on how to take care of a long running job using DAG. 
+Candidate explained the basic checks using DAG. 
+Was able to explain Data skewness and the way to handle it.
+
+
+PySpark and Databricks : Not worked with Databricks Repos and workflows and not aware of SQL Endpoint. 
+Not clear about the cluster types of Databricks. 
+Not clear about the DevOps integration. 
+Worked with Delta tables, was able to explain the ACID Property and timetravel feature.
+
+Candidate was not able to answer properly rename a column in delta table. Fair understanding about connecting Databricks with ADLS. Connected using SAS Key and Key Vault. Candidate was able to write the pySpark code to read the data from a csv file, drop duplicate and copy to the target delta table.
+
+
+----------------------------------
+SQL : Was able to answer the query on Primary, Foreign and Unique Keys in a table. Not aware of surrogate key. 
+
+Candidate was able to give correct answers to the scenario based join outputs in given time. 
+Below is the join ouput for the below tables based on ID answered by candidate. 
+
+Table 1
+
+id, value
+
+1,a
+
+1,b
+
+1,c
+
+2,d
+
+3,e
+
+3,f
+
+
+Table 2 
+
+id, value
+
+3,a
+
+3,b
+
+1,c
+
+1,d
+
+4,f
+
+
+inner - 10
+
+left  - 11
+
+right - 11
+
+full outer - 12
+
+
+Also, was able to give the Output in case a null id is added to the table.
+
+When asked to write the query to Find city with maximum number of employees for each department, 
+the candidate was struggled to write a good Query. below is the query
+
+select department,city,EmpCount from
+
+(select department,city,EmpCount,row_number() over( partition by department order by EmpCount desc) rno from
+
+(select department,city,count(*) EmpCount from EmployeeTable group by department,city)a
+
+)b
+
+where rno=1;
+
+experience in Azure Data Engineering.
+experience working with Azure Data Engineering services like Databricks , Data factory, SQL Server, ADLS, KeyVault, Logic Apps. 
+coding in PySpark and SQL.  
+experience in migrating the Big Data Applications from On-premise big data platform to Cloud data platform.
+
+
+
+
+
+

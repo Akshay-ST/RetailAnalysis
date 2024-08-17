@@ -1,0 +1,157 @@
+
+Question on ADF:
+
+1) authenticate a linkedservice - spn,managed identity
+2)global params
+3) adf live mode - not able to explain
+4) Limitiing concurrency in ADF-not able to explain
+
+-------------
+Question on ADB:
+
+1) Spark Version
+2)AQE feature in spark features
+3) key diff b/w broadcast in spark 2and broadcast in AQE
+4) Broadcast join- 1mb ,1 kb ,1gb,10g why 1mb 1kb alone broadcasted
+5) Why shuffle partition is set to 200
+6) Default Partition while reading
+7)What is Autoloader
+
+#Assuming the sample data as below,
+We need to deduplicate the dataset on id level (ie) we need 1 row per id and we should pick the latest row based on join_date(id 1 on below data)
+if there are multiple rows  and
+we can pick up any 1 row randomly if two records for the same id falls on the same date(id 3 on below data ) and just pick the row if there are no dups (id 2)
+
+For example for below input we will have the below opt
+
+Input:
+id,name,join_date
+1,abc,2022-01-01
+1,def,2022-04-01
+2,XYZ,2021-01-01
+3,MNO,2021-01-01
+3,PQE,2021-01-01
+
+Opt:
+id,name,join_date
+1,def,2022-04-01
+2,XYZ,2021-01-01
+3,PQE,2021-01-01
+
+Input:
+schema id int name string join_date date
+/root_logs/YYYYMMDDHHMMSS_log.csv
+
+id,name,join_date
+1,abc,2022-01-01
+1,def,2022-04-01
+2,XYZ,2021-01-01
+3,MNO,2021-01-01
+3,PQE,2021-01-01
+
+1) it should only process those files fitting to the schema
+2)load only data starting with input number
+
+------------------------------------
+Question on Spark:
+Asked about internal architecture of spark, he spoke about spark context, driver, master/slave architecture.
+Is not aware of the role of catalyst optimizer. Asked about AQE - isn't very clear about how does this actually work but mentioned few points about query optimization.
+Is aware of the difference between job, stages and tasks. Knew about when does stage gets created. He was able to explain difference between narrow and wide transformations.
+Asked about the different strategies of spark joins - he was able to explain about broadcast joins, sort merge joins and shuffle hash joins.
+Gave scenario on different sizes of dataframe broadcast, he was able to explain the same. Also, was able to share details on the limitation of the broadcast variable in config.
+Was able to explain about the repartition flow, however how to identify this will help or scenarios when to use he was not able to share inputs.
+Didn't work on any spark optimization issues.
+
+----------------------------------------------
+Azure Cloud - ADF, ADB, Synapse
+Question on ADF
+Was able to explain about global parameters within ADF and its usages.
+He was able to explain difference between different types of Integration Runtimes.
+He was able to explain design on building historical data ingestion, for incremental needed some correction on setting up the logic to fetch from source.
+Asked to design configuration driven data ingestion pipeline, he was able to explain and referred to his current project design which has been implemented.
+Leveraged web activity to fetch data from API, is not aware of usage of Datasets to pull REST API approach.
+
+Question on Databricks
+Explained few scenarios on optimization of delta tables using z-ordering, vaccum command.
+He has had not much exposure to Databricks. He was able to explain about Databricks and its features.
+He was able to explain how mount paths is created to read data from storage account.
+Problems
+He was able to solve problems using joins, aggregations.
+He was able to solve problems using lead/lag functions.
+He was able to read csv file, however when given scenario on handling csv file that has delimiter as part of content he was not able to write code.Programming
+
+Find the profit/loss if I purchased stock in different months but sold all in March
++--------+-----+-----+
+|stock_id|month|price|
++--------+-----+-----+
+|       1|    1|  125|
+|       1|    2|  135|
+|       1|    3|  145|
+|       2|    1|  150|
+|       2|    2|  100|
+|       2|    3|  200|
+|       3|    1|  185|
+|       3|    2|  190|
+|       3|    3|  180|
++--------+-----+-----+
+
+
+stocks purchase months
++--------+--------------+
+|stock_id|purchase_month|
++--------+--------------+
+|       1|             1|
+|       2|             2|
+|       3|             1|
++--------+--------------+
+
+CUSTOMER
+CustomerID  CustFirstName CustLastName  CustEmail
+12           Jacky         Chan          jchan@email.com
+25           Rob           Finesse       rfinn@email.com
+
+ORDERS
+OrderID    TotalAmount     OrderDate     CustomerID
+123         100            20-Oct-2018    12
+
+----------------------
+ADF : different types of IRs and the installation of SHIR. Articulation was clear about Linked Service. asked to ingest the data from 10 SQL server tables to ADLS, was able to answer using the metadata driven approach. able to answer the query regarding the incremental ingestion from a table using watermarking. dataflows.
+
+Spark : spark architecture, cluster manager role and DAG. differentiate between transformation and actions. explain Lazy evaluation.
+
+PySpark and Databricks : Worked with Databricks Repos. Aware about workflows, SQL Endpoint. Clear about the cluster types of Databricks, Not clear about the DevOps integration. Delta tables, was able to explain the Z Ordering and time travel feature. Aware of Secret Scope. Fair understanding about connecting Databricks with ADLS using mounting however was not clear about it.
+When asked to write a script about finding the maximum selling product on a Tuesday based on the input dataframe.
+
+ADLS : Aware of the authentication method like MI, SP, SAS. Was able to differentiate between SP and Managed Identity. say all the types of storage in ADLS.
+
+SQL : Was able to answer the query on Primary, Foreign and Unique Keys in a table.
+
+Table 1
+id, value
+1,a
+1,b
+1,c
+2,d
+3,e
+3,f
+
+Table 2
+id, value
+3,a
+3,b
+1,c
+1,d
+4,f
+
+inner - 10
+left  - 11
+right - 11
+full outer - 12
+
+
+When asked to write the query to Find city with maximum number of employees for each department.
+select dept,city from (
+(select dept,city, row_num() over( order by employee_cnt desc) as rn from (
+select dept,city,count(id) as employee_cnt from employee group by dept,city ) as a ) where rn=1
+
+

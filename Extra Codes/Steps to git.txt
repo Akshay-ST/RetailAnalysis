@@ -1,0 +1,102 @@
+========================
+steps to add key:
+
+ssh-keygen -t ed25519 -C "your_email@example.com"
+
+$ eval "$(ssh-agent -s)"
+
+ssh-add ~/.ssh/id_ed25519
+========================
+Steps to initialize: 
+
+git init
+git add .
+git commit -m "first commit" 
+git remote add origin https://github.com/Akshay-ST/Spark-Notebooks.git
+
+(our local branch is Master, we need to modify it to be same as remote branch which is main)
+git branch -M main
+
+git push -u origin main 
+(once you have set the upstream) just do git push
+
+git remote set-url origin git@github.com:Akshay-ST/Spark-Notebooks.git
+ssh -vT git@github.com
+
+======================================
+pushing updates to repo (itv):-
+
+eval "$(ssh-agent -s)"
+ssh-add ast
+git add *
+git commit  -m ''
+git push origin master
+
+==========================================
+Sir's Notes
+==========================================
+
+git clone <url>
+
+git status
+
+git add .
+
+git commit -m "message"
+
+git push origin main
+
+---
+
+git remote add origin <url.git>
+
+git remote -v
+
+git branch (tell us on which branch we are)
+
+local branch = master, remote branch = main
+we need both to be same, so we change 
+
+git branch -M main
+
+git push origin main
+git push -u origin main (sets the upstream)
+
+then subsequntly, we can just
+
+git push
+
+---
+git branch (to check which branch)
+git branch -M main (to rename a branch name)
+git branch feature1 (to create a new branch)
+git checkout feature1 (to switch to feature1 branch)
+git checkout -b feature2 (to create and navigate to a new branch)
+git checkout -b feature3 feature2 (it will take the base as feature2)
+git branch -d feature3
+
+to learn git visually = learngitbranching.js.org
+
+---
+1st scenario - you made changes which are not even staged
+git restore <filename>
+
+2nd scenario - you made changes and have staged those changes
+git restore --staged <filename>
+git restore <filename>
+
+3rd scenario - you made changes and have committed those changes
+git log (shows the commit history, the most recent commit will be at the top)
+git reset head~1
+
+git log
+git reset bf914703674450b1e2ed5f0208afcea8bdb501b7
+git reset --hard bf914703674450b1e2ed5f0208afcea8bdb501b7
+
+---
+
+
+git clone https://xzbit311:<pat>@github.com/xzbit311/repo.git
+
+
+
