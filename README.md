@@ -8,7 +8,7 @@ Welcome to our Retail Analysis Project repository! 🎉
 ![Testing Framework](https://img.shields.io/badge/Testing_Framework-PyTest-orange)
 ![Logging](https://img.shields.io/badge/Logging-Log4j-lightgrey)
 ![GitHub](https://img.shields.io/github/license/your-username/repo-name)
-![GitHub last commit](https://img.shields.io/github/last-commit/your-username/repo-name)
+![GitHub last commit](https://img.shields.io/github/last-commit/Akshay-ST/RetailAnalysis)
 
 This project was developed using PyCharm, leveraging the power of PySpark for efficient big data processing. In addition, a comprehensive testing framework has been implemented with PyTest to ensure the reliability and integrity of the analysis. Logging is also enabled using Log4j for effective monitoring and debugging.
 
