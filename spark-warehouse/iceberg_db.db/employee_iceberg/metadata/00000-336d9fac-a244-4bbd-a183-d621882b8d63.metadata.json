@@ -1,0 +1,56 @@
+{
+  "format-version" : 2,
+  "table-uuid" : "18f49b79-9e42-4190-ab50-f933825c0dd6",
+  "location" : "file:/home/akshay/Documents/Setups/RetailAnalysis/RetailAnalysis/spark-warehouse/iceberg_db.db/employee_iceberg",
+  "last-sequence-number" : 0,
+  "last-updated-ms" : 1752424990561,
+  "last-column-id" : 4,
+  "current-schema-id" : 0,
+  "schemas" : [ {
+    "type" : "struct",
+    "schema-id" : 0,
+    "fields" : [ {
+      "id" : 1,
+      "name" : "id",
+      "required" : false,
+      "type" : "int"
+    }, {
+      "id" : 2,
+      "name" : "name",
+      "required" : false,
+      "type" : "string"
+    }, {
+      "id" : 3,
+      "name" : "dept",
+      "required" : false,
+      "type" : "string"
+    }, {
+      "id" : 4,
+      "name" : "salary",
+      "required" : false,
+      "type" : "int"
+    } ]
+  } ],
+  "default-spec-id" : 0,
+  "partition-specs" : [ {
+    "spec-id" : 0,
+    "fields" : [ ]
+  } ],
+  "last-partition-id" : 999,
+  "default-sort-order-id" : 0,
+  "sort-orders" : [ {
+    "order-id" : 0,
+    "fields" : [ ]
+  } ],
+  "properties" : {
+    "owner" : "akshay",
+    "write.parquet.compression-codec" : "zstd"
+  },
+  "current-snapshot-id" : -1,
+  "refs" : { },
+  "snapshots" : [ ],
+  "statistics" : [ ],
+  "partition-statistics" : [ ],
+  "snapshot-log" : [ ],
+  "metadata-log" : [ ]
+}

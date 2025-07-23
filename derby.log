@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Sun Jul 13 22:22:29 IST 2025:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0198-04b3-ce7c-0000010705d8 
+on database directory /home/akshay/Documents/Setups/RetailAnalysis/RetailAnalysis/metastore_db with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@c387f44 
+Loaded from file:/home/akshay/Documents/Setups/RetailAnalysis/RetailAnalysis/.venv/lib/python3.12/site-packages/pyspark/jars/derby-10.14.2.0.jar
+java.vendor=Ubuntu
+java.runtime.version=21.0.7+6-Ubuntu-0ubuntu124.04
+user.dir=/home/akshay/Documents/Setups/RetailAnalysis/RetailAnalysis
+os.name=Linux
+os.arch=amd64
+os.version=6.8.0-63-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
