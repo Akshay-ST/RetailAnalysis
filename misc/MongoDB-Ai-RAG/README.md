@@ -8,3 +8,5 @@ The self-paced versions of the Developer Days workshops are linked below:
 * [Building RAG Applications with MongoDB](https://mongodb-developer.github.io/ai-rag-lab/)
 
 * [The A to Z of Building AI Agents](https://mongodb-developer.github.io/ai-agents-lab/)
+
+* [Set Up] (https://mongodb-developer.github.io/ai-rag-lab/docs/dev-env/dev-env-setup/)
