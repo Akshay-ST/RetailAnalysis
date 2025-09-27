@@ -11,6 +11,7 @@ PyArrow = "*"
 ipykernel = "*"
 flask = "*"
 pymongo = "*"
+graphviz = "*"
 
 [dev-packages]
 
