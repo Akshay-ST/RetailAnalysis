@@ -15,14 +15,14 @@ df = (
 df.coalesce(1).write \
   .mode("overwrite") \
   .option("header", "true") \
-  .csv("/data/header_only")
+  .csv("/home/akshay/Documents/Setups/RetailAnalysis/RetailAnalysis/misc/PySpark/data/fht_v1/header_only")
 
 # File 2: Only data rows (exclude header/trailer)
 data_rows = df.filter(~F.col("Header").isin(["Trailer"]))
 data_rows.coalesce(1).write \
   .mode("overwrite") \
   .option("header", "true") \
-  .csv("/data/data_only")
+  .csv("/home/akshay/Documents/Setups/RetailAnalysis/RetailAnalysis/misc/PySpark/data/fht_v1/data_only")
 
 # File 3: Last 3 lines (using row_number)
 w = Window.orderBy(F.monotonically_increasing_id())
@@ -30,4 +30,6 @@ last_3_rows = df.filter(F.row_number().over(w).isin([df.count()-2, df.count()-1,
 last_3_rows.coalesce(1).write \
   .mode("overwrite") \
   .option("header", "true") \
-  .csv("/data/last_3_lines")
+  .csv("/home/akshay/Documents/Setups/RetailAnalysis/RetailAnalysis/misc/PySpark/data/fht_v1/last_3_lines")
+
+spark.stop()
