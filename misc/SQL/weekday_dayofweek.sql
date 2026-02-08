@@ -18,7 +18,7 @@ INSERT into dates (dt) values
 ('2026-01-30'), -- fri
 ('2026-01-31'); -- Sat
 
-select dt, dayofweek(dt), weekday(dt) from dates;
+select dt, weekday(dt), dayofweek(dt) from dates;
 
 /*
 Aspect	WEEKDAY(date)	DAYOFWEEK(date)
