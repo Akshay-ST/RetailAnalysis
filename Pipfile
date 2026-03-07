@@ -12,6 +12,7 @@ ipykernel = "*"
 flask = "*"
 pymongo = "*"
 graphviz = "*"
+mysql-connector-python = "*"
 
 [dev-packages]
 
