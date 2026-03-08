@@ -1,24 +1,24 @@
-from pyspark.sql import SparkSession
+import mysql.connector
 
-spark = SparkSession.builder \
-    .appName("MySQLConnection") \
-    .config("spark.jars", "C:/Users/akshay.thakur/OneDrive - Synechron Inc/Documents/PySpark/mysql-connector-j-9.4.0/mysql-connector-j-9.4.0.jar") \
-    .master("local[*]") \
-    .config("spark.hadoop.validateOutputSpecs", "false") \
-    .config("spark.hadoop.fs.AbstractFileSystem.hdfs.impl","org.apache.hadoop.fs.LocalFileSystem") \
-    .config("spark.hadoop.fs.file.impl","org.apache.hadoop.fs.LocalFileSystem") \
-    .getOrCreate()
+# Connect to server
+cnx = mysql.connector.connect(
+    host="127.0.0.1",
+    port=3306,
+    user="root",
+    password="123456789")
 
-jdbc_url = "jdbc:mysql://localhost:3306/index_db"
-table_name = "employees"
-properties = {
-    "user": "root",
-    "password": "root",
-    "driver": "com.mysql.cj.jdbc.Driver"
-}
+# Get a cursor
+cur = cnx.cursor()
 
-df = spark.read.jdbc(url=jdbc_url, table=table_name, properties=properties)
+# Execute a query
+cur.execute("USE Akshay")
+cur.execute("select * from Employee")
 
-df.show()
 
-spark.stop()
+# Fetch one result
+row = cur.fetchall()
+for i in row:
+    print(i)
+
+# Close connection
+cnx.close()
