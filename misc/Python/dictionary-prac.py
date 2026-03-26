@@ -20,3 +20,15 @@ for item in l:
     d3[item] = d3.get(item, 0 ) + 1
 
 print(d3)
+
+st = 'apple'
+
+d4 = {}
+
+for i in st:
+    if i in d4.keys():
+        d4[i] += 1
+    else:
+        d4[i] = 1
+
+print(d4)
