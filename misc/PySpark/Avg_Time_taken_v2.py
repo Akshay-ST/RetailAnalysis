@@ -34,6 +34,18 @@ pivoted_df = df.groupBy("machine_id", "process_id")\
 # Show the pivoted DataFrame to see the intermediate result
 print("Pivoted DataFrame:")
 pivoted_df.show()
+"""
++----------+----------+-----+-----+                                             
+|machine_id|process_id|  end|start|
++----------+----------+-----+-----+
+|         1|         0| 1.55| 0.55|
+|         1|         1| 1.42| 0.43|
+|         0|         1| 4.12| 3.14|
+|         2|         0|4.512|  4.1|
+|         0|         0| 1.52|0.712|
+|         2|         1|  5.0|  2.5|
++----------+----------+-----+-----+
+"""
 
 # Step 2: Calculate the processing time for each process
 # This is simply the difference between the 'end' and 'start' timestamps
@@ -42,10 +54,27 @@ processing_time_df = pivoted_df.withColumn("processing_time",col("end") - col("s
 # Show the DataFrame with the calculated processing time
 print("DataFrame with Processing Time:")
 processing_time_df.show()
+"""
++----------+----------+-----+-----+------------------+                          
+|machine_id|process_id|  end|start|   processing_time|
++----------+----------+-----+-----+------------------+
+|         1|         0| 1.55| 0.55|               1.0|
+|         1|         1| 1.42| 0.43|              0.99|
+|         0|         1| 4.12| 3.14|              0.98|
+|         2|         0|4.512|  4.1|0.4119999999999999|
+|         0|         0| 1.52|0.712|             0.808|
+|         2|         1|  5.0|  2.5|               2.5|
++----------+----------+-----+-----+------------------+
+"""
 
 # Step 3: Group by machine_id and calculate the average processing time
 average_time_df = processing_time_df.groupBy("machine_id") \
                     .agg(avg("processing_time").alias("average_processing_time"))
+
+#Combining the withColumn and groupBy in one step
+average_time_df = pivoted_df.withColumn("processing_time",col("end") - col("start") ) \
+                            .groupBy("machine_id") \
+                            .agg(avg("processing_time").alias("average_processing_time"))
 
 # Show the final result
 print("Final result - Average processing time per machine:")

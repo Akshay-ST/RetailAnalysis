@@ -30,9 +30,8 @@ df_failures = (transactions_df
 window_spec = Window.partitionBy("custid").orderBy("txn_ts")
 
 # Process the data
-df_result = (transactions_df
-    .withColumn("txn_ts", to_timestamp("txn_time"))
-    .filter(col("status") == "FAILED")
+"""
+df_result = (df_failures
     .withColumn("lag1_time", lag("txn_ts", 1).over(window_spec))
     .withColumn("lag2_time", lag("txn_ts", 2).over(window_spec))
     .withColumn("gap1", col("txn_ts") - col("lag1_time"))  # Current - previous
@@ -41,6 +40,17 @@ df_result = (transactions_df
         col("lag2_time").isNotNull() &           # 3 consecutive exist
         (col("gap1") <= expr("interval 1 hour")) &  # Gap1 ≤ 1hr
         (col("gap2") <= expr("interval 1 hour"))    # Gap2 ≤ 1hr
+    )
+    .select("custid")
+    .distinct()
+)
+"""
+df_result = (
+    df_failures
+    .withColumn("lag2_time", lag("txn_ts", 2).over(window_spec))
+    .filter(
+        col("lag2_time").isNotNull()
+        & ((col("txn_ts").cast("long") - col("lag2_time").cast("long")) <= 3600)
     )
     .select("custid")
     .distinct()
