@@ -14,6 +14,7 @@ pymongo = "*"
 graphviz = "*"
 mysql-connector-python = "*"
 findspark = "*"
+requests = "*"
 
 [dev-packages]
 
