@@ -32,14 +32,13 @@ P1	   | 2			|60|
 
 # map keys / map values
 #method 1
-from pyspark.sql import functions as F
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import array_contains, lit, map_keys, sum, count, expr, col
+from pyspark.sql import functions as F
+from pyspark.sql.functions import array_contains, map_keys, map_values, lit, sum, count, expr, col
 
 
 # Initialize Spark session
 spark = SparkSession.builder.appName("ProductAnalysis").getOrCreate()
-
 # Sample data as per your example
 data = [
     (1, "2023-07-07", "300USD", {"p1": 30, "p2": 600, "p3": 50}, "US"),
@@ -56,9 +55,21 @@ df.show(truncate=False)
 
 # Assuming your DataFrame is named `df`
 # Filter rows where prod_info contains 'p1'
-filtered_df = df.filter(array_contains(map_keys(col("prod_info")), lit("p1")))
-
-#filtered_df = df.filter(expr("array_contains(map_keys(prod_info), 'p1')"))
+filtered_df = df.filter(expr("array_contains(map_keys(prod_info), 'p1')"))
+#filtered_df = df.filter(array_contains(map_keys(col("prod_info")), lit("p1")))
+filtered_df = filtered_df.withColumn("prod_info_keys", map_keys("prod_info") ) \
+                         .withColumn("prod_info_values", map_values("prod_info") ) \
+                         .withColumn("p1_value", expr("prod_info['p1']")) \
+                         .withColumn("p1_valu", col("prod_info")["p1"])
+filtered_df.show(truncate=False)
+"""
++--------+----------+------+---------------------------------+-------+--------------+----------------+--------+-------+
+|order_id|date      |value |prod_info                        |country|prod_info_keys|prod_info_values|p1_value|p1_valu|
++--------+----------+------+---------------------------------+-------+--------------+----------------+--------+-------+
+|1       |2023-07-07|300USD|{p1 -> 30, p2 -> 600, p3 -> 50}  |US     |[p1, p2, p3]  |[30, 600, 50]   |30      |30     |
+|2       |2023-07-06|400USD|{p1 -> 30, p21 -> 600, p35 -> 50}|ind    |[p1, p21, p35]|[30, 600, 50]   |30      |30     |
++--------+----------+------+---------------------------------+-------+--------------+----------------+--------+-------+
+"""
 
 # Aggregating data for product 'p1'
 result_df = filtered_df.groupBy(F.lit("P1").alias("prod_id")) \
@@ -67,15 +78,28 @@ result_df = filtered_df.groupBy(F.lit("P1").alias("prod_id")) \
         F.sum(F.regexp_extract(df.value, r'(\d+)', 1).cast("int")).alias("total_value")
     )
 
+result_df2 = filtered_df.groupBy(map_keys("prod_info")[0].alias("prod_id")) \
+                .agg(
+                    F.count("*").alias("Total_count"),
+                    F.sum(col("prod_info")["p1"]).alias("Total_value")
+                )
+
 # Select and display results
 print("method 1 result:")
 result_df.show()
-
-
+result_df2.show()
+"""
++-------+-----------+-----------+                                               
+|prod_id|total_count|total_value|
++-------+-----------+-----------+
+|     P1|          2|        700|
++-------+-----------+-----------+
+"""
 
 
 #method2
 from pyspark.sql.types import StructType, StructField, IntegerType, StringType, MapType
+from pyspark.sql.functions import array_contains, lit, map_keys, map_values, sum, count, expr, col
 
 
 # Sample data as per your example
@@ -103,7 +127,9 @@ df = spark.createDataFrame(data, schema)
 from pyspark.sql.functions import explode
 
 # Explode the prod_info map to have one row per product
-exploded_df = df.selectExpr("*", "explode(prod_info) as (prod_id, product_value)")
+#exploded_df = df.selectExpr("*", "explode(prod_info) as (prod_id, product_value)")
+#or
+exploded_df = df.select("*", explode("prod_info").alias("prod_id", "product_value"))
 
 # Filter for product 'p1'
 p1_df = exploded_df.filter(col("prod_id") == "p1")
@@ -117,11 +143,20 @@ result = p1_df.groupBy("prod_id").agg(
 # Format the final output
 print("method 2 result:")
 result.show()
+"""
++-------+-----------+-----------+                                               
+|prod_id|total_count|total_value|
++-------+-----------+-----------+
+|     p1|          2|         60|
++-------+-----------+-----------+
+"""
 
+
+"""
 # Optional: To present in the exact format as in your output:
 final_output = result.rdd.map(lambda row: f"P1 | {row['total_count']} | {row['total_value']}").collect()
 print("Formatted output:")
 print("prod_id | total_count | total_value")
 for line in final_output:
     print(line)
-
+"""
