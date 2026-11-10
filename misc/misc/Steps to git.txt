@@ -24,6 +24,22 @@ git remote set-url origin git@github.com:Akshay-ST/Spark-Notebooks.git
 ssh -vT git@github.com
 
 ======================================
+
+https://<USERNAME>:<PAT>@github.com/<USERNAME>/<REPO>.git
+
+https://Akshay-ST:<gitpat>@github.com/Akshay-ST/Spark-Notebooks.git
+
+https://github.com/Akshay-ST/Spark-Notebooks/
+
+git remote add upstream https://Akshay-ST:<gitpat>@github.com/Akshay-ST/Spark-Notebooks.git
+
+git remote set-url origin https://Akshay-ST:<gitpat>@github.com/Akshay-ST/Spark-Notebooks.git
+
+git remote set-url origin https://<USERNAME>:<PAT>@github.com/Akshay-ST/Spark-Notebooks.git
+
+git push https://Akshay-ST:<gitpat>@github.com/Akshay-ST/Spark-Notebooks.git main
+
+======================================
 pushing updates to repo (itv):-
 
 eval "$(ssh-agent -s)"
@@ -96,7 +112,6 @@ git reset --hard bf914703674450b1e2ed5f0208afcea8bdb501b7
 ---
 
 
-git clone https://xzbit311:<pat>@github.com/xzbit311/repo.git
 
 
 

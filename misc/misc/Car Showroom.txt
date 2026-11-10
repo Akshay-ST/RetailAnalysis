@@ -1,0 +1,43 @@
+Car  Showroom: -
+
+Bronze:
+-----------------------------
+Source Sys: Salesforce:
+Firehose 
+target: S3 (Staging)
+Tables reading from staging raw files
+
+
+
+
+silver
+------------------------
+Tables: - (Entities)
+
+Dimension: -
+Showroom
+Product 
+Supplier
+Customer
+Sales_person
+
+Fact: - 
+sales (grain - sale_id -> 1 vehicle (VIN) )
+
+
+Sales Person Performance:
+SELECT
+	sp.Sales_person_id,
+	
+	
+from Sales s
+left join Sales_person sp
+left join Showroom sh
+
+------------------------	
+
+gold layer: 
+views for reporting
+
+
+

@@ -1,0 +1,42 @@
+transactions.csv - order_id, customer_id, product_id, price, quantity, date
+
+Customer.csv - customer_id, customer_name, city, country
+
+product.csv - product_id, product_name, parent_product_id
+
+Question - find country wise 3rd highest selling product in 2023
+
+Output - country, product_name, total_quantity
+
+
+--------------------------------------
+spark = SparkSession.builder.appName("Top 3 Products").getOrCreate()
+
+
+trans_schema = "order_id int, customer_id "
+trans_df = spark.read.format("csv").option("header","true").schema(trans_schema).load('./transactions.csv')
+
+customer_df =
+
+product_df =
+
+
+Cust_trans_df = trans_df.join(customer_df, customer_df.customer_id = trans_df.customer_id, "inner")
+
+trans_prod_df = cust_trans_df.join(product_df, product_df.product_id = cust_trans_df.product_id, "inner")
+
+
+
+result_df = trans_prod_df.groupBy("country","product_name") \
+		.agg(count("product_id").alias("total_quantity")) \
+		.sort("total_quantity",Ascending=False)
+
+
+results_df = trans_prod_df.
+
+
+
+
+		
+result_df.show( Truncate=False)
+

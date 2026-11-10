@@ -1,0 +1,142 @@
+CREATE TABLE TestGroup (			
+    GroupID INT IDENTITY(1,1),			
+    GroupName VARCHAR(100)			
+);	
+
+CREATE TABLE TestCase (			
+    TestID INT IDENTITY(1,1),			
+    GroupID INT,			
+    Status VARCHAR(10),   -- OK / FAIL			
+    Value INT			
+);			
+		
+			
+-- Groups (all must appear even if no tests)			
+INSERT INTO TestGroup (GroupName) VALUES			
+('numerical stability'),			
+('memory usage'),			
+('corner cases'),			
+('performance');			
+			
+#NAME?			
+INSERT INTO TestCase (GroupID, Status, Value) VALUES			
+(1, 'OK',   20),			
+(1, 'OK',   20),			
+(1, 'OK',   20),			
+(1, 'OK',   20),			
+			
+(2, 'OK',   10),			
+(2, 'OK',   10),			
+(2, 'FAIL', 10),			
+			
+(4, 'FAIL', 30),			
+(4, 'FAIL', 40);			
+			
+			
+name_of_the_group	              all_test_cases	passed_test_cases	total_value
+numerical stability	                4	               4	           80
+memory usage	                        3	               2	           20
+corner cases	                        0	               0	           0
+performance	                        2	               0	           0
+			
+			
+"name_of_the_group (all groups need to be displayed even if there are no corresponding tests) 
+all_test_cases (number of tests in the group) 
+passed_test_cases (number of test cases with the status OK) 
+total_value (total value of passed tests in this group)"
+
+-------------------------------------------------
+this json to flatten
+
+df=[
+  {
+    "id": 1,
+    "name": "John",
+    "address": {
+      "street": "123 Main St",
+      "city": "New York",
+      "zipcode": "10001",
+      "contact": {
+      "email": "john@example.com",
+      "phone": "123-456-7890"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Alice",
+    "address": {
+      "street": "456 Oak St",
+      "city": "Los Angeles",
+      "zipcode": "90001"
+    },
+    "contact": {
+      "email": "alice@example.com",
+      "phone": "987-654-3210"
+    }
+  }
+]
+
+
+-------------------------------------------------
+theory
+
+Azure data factory optimization techniques
+Databricks AQE and Liquid clustering features
+Spark optimization technique
+
+
+-------------------------------------------------
+And sql question was related to using grouping and aggregation with join logic
+Pyspark question was related to flattening a nested json
+
+You are asked to build an end to end ingestion and transformation pipeline using Delta Live Tables for large-scale batch data landing into a Databricks Lakehouse. 
+Describe how you would design this pipeline, including table layers, expectations, and deployment considerations.
+Explain how you design Structured Streaming pipelines on Databricks to handle late-arriving data, failures, and restart safety while maintaining data correctness.
+Describe how you optimise Delta Lake tables used for analytics and downstream consumption in Databricks SQL and Genie.
+You are migrating existing pipelines from Azure Synapse to Databricks. Explain how you approach logic rewrite, validation, and performance benchmarking.
+Explain how you build analytics-ready datasets that support Databricks SQL dashboards and Genie-based conversational analytics.
+Describe how you package, deploy, and promote Databricks pipelines using CI/CD while ensuring reliability and repeatability.
+Explain how you instrument Databricks pipelines for observability and operational monitoring.
+How do you ensure pipelines comply with Unity Catalog permissions and data contracts defined by governance teams?
+Describe how you handle backfills and reprocessing in large Databricks pipelines without impacting downstream consumers.
+How do you collaborate with DataOps and Platform teams to ensure pipeline stability and scalability?
+
+Mostly related to genie in databricks, how would you provide access to different teams to genie based on their roles
+
+Deployments_DBA_Rollback mechanism
+Unity Catalog and dlt setup
+Latest in databricks
+Compute and cost related
+When will u use dlt when not suitable
+
+
+-------------------------------------------------
+
+1.Temporary tables are used in stored proc or functions?
+2.dlt monitoring of failures
+3.Streaming jobs architecture and optimisation 
+4.liquid clustering ,z-ordering, Relational databases differences
+5.in streaming job can we delete data at any stage?
+6.Nested json , swap elements row 1 with row 2
+
+----------------------------------------------
+country
+-------
+India
+Aus
+Pak
+
+
+-------------
+Ind-Aus
+Aus-Ind
+
+
+SELECT
+	t1.countryt as coutry1,
+	t2.country as coutry2
+
+From country t1
+join country t2
+ on t1.country < t2.country 
+

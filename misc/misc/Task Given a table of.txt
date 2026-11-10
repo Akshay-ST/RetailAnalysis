@@ -1,0 +1,55 @@
+Task: Given a table of user clicks and a table of purchases, 
+write a query to identify the "Last-Touch" marketing campaign for every purchase within a 7-day lookback window.
+
+Focus: Use of LEAD/LAG, ROW_NUMBER(), and efficient join predicates.
+
+clicks:
+
+user_id
+click_time
+campaign_id
+campaign_name
+
+
+purchases:
+
+user_id
+purchase_time
+purchase_id
+
+---------------------------
+
+
+SELECT
+	p.user_id,
+	p.purchase_id
+FROM purchases p
+JOIN clicks c
+ on p.user_id = c.user_id
+WHERE c.campaign_name = 'Last-Touch"
+ AND DATEDIFF(date(c.click_time), date(p.purchase_time)) <= 7
+ 
+ 
+ ------------------------
+Write a Python function to process a massive directory of 
+nested JSON files from S3. 
+The function must flatten a nested "items" array and convert it into a Spark DataFrame
+ 
+ from pyspark.sql import SparkSession
+ from pyspark.sql.functions import selectExpr
+ 
+ spark = SparkSession.
+ 
+ input_dir = "s3://raw_bucket/json/input.json"
+ 
+ 
+ def data_processor(spark, input_dir):
+ 	input_df = spark.read.json(input_dir)
+ 	
+ 	temp_df = input_df.select(col("order_id"), 
+ 				col("items.id").alias("item_id"),
+ 				col("items.name").alias("item_name"),
+ 				col("order_total")
+ 				)
+ 	return temp_df
+ 				

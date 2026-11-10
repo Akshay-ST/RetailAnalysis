@@ -1,0 +1,26 @@
+country
+-------
+India
+Aus
+Pak
+
+
+-------------
+Ind-Aus
+Aus-Ind
+
+
+WITH Country_pairs as (
+SELECT
+	t1.countryt as coutry1,
+	t2.country as coutry2
+
+From country t1
+join country t2
+ on t1.country <> t2.country
+), 
+
+Country_matches (
+SELECT
+	
+

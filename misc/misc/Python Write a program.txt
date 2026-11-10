@@ -1,0 +1,90 @@
+
+------------------------------
+input
+[1,4,4,4,5,6,7,4,3,3,9]
+ 
+output
+[1,4,5,6,7,4,3,9]
+
+output = []
+
+for i in range(len(input)-1):
+	if input[i] != input[i+1]:
+		output.append(i)
+	elif input[i] == input[i+1]:
+		
+------------------------------
+
+print all the student name who got higher marks in math than sci
+
+-- Create table
+CREATE TABLE students (
+    student_name VARCHAR(10),
+    subject VARCHAR(10),
+    marks INT
+);
+
+-- Insert data
+INSERT INTO students (student_name, subject, marks) VALUES
+('A', 'MATHS', 50),
+('B', 'MATHS', 20),
+('C', 'MATHS', 80),
+('D', 'MATHS', 35),
+('E', 'MATHS', 90),
+('A', 'SCI', 40),
+('B', 'SCI', 50),
+('C', 'SCI', 90),
+('D', 'SCI', 55),
+('E', 'SCI', 60);
+
+ 
++------------+-------+-----+
+
+|student_name|subject|marks|
+
++------------+-------+-----+
+
+| A| MATHS| 50|
+
+| B| MATHS| 20|
+
+| C| MATHS| 80|
+
+| D| MATHS| 35|
+
+| E| MATHS| 90|
+
+| A| SCI| 40|
+
+| B| SCI| 50|
+
+| C| SCI| 90|
+
+| D| SCI| 55|
+
+| E| SCI| 60|
+
++------------+-------+-----+
+
+a maths 50 1
+a sci	45 2
+
+select 
+	student_name
+from (
+	select
+		student_name,
+		subject,
+		marks,
+		rank() OVER (partition By student_name order by marks desc) as rnk
+
+	from students
+)
+where rnk = 1 and subject = 'MATHS'
+
+
+--------------------------
+
+	
+		
+		
