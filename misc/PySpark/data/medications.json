@@ -56,7 +56,8 @@
             }]
         }
     ],
-    "labs":[{
+    "labs":[
+        {
         "name":"Arterial Blood Gas",
         "time":"Today",
         "location":"Main Hospital Lab"      
@@ -117,7 +118,8 @@
         "location":"Primary Care Clinic"    
         }
     ],
-    "imaging":[{
+    "imaging":[
+        {
         "name":"Chest X-Ray",
         "time":"Today",
         "location":"Main Hospital Radiology"    
